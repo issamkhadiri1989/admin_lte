@@ -49,7 +49,7 @@ final class BookFactory extends ModelFactory
         return [
             'ean' => self::faker()->ean13(),
             'pages' => self::faker()->numberBetween(20, 9999),
-            'price' => self::faker()->randomFloat(2, 10, 999),
+            'price' => self::faker()->randomFloat(2, 1, 5),
             'synopsis' => self::faker()->text(255),
             'title' => self::faker()->text(30),
             'category' => CategoryFactory::random(),

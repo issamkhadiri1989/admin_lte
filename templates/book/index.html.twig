@@ -2,4 +2,52 @@
 {% import 'macros/header.html.twig' as header %}
 {% block body %}
     {{ header.render_header('Library') }}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Books catalog</h3>
+                    <div class="card-tools">
+                        {% if category is not null %}
+                            Category : {{ category.name }} <a href="{{ url('app_book_list') }}">Remote filter</a>
+                        {% endif %}
+                    </div>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body p-0">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th style="width: 10px">#</th>
+                            <th>Name</th>
+                            <th>Category</th>
+                            <th>Author</th>
+                            <th>Pages</th>
+                            <th>EAN13</th>
+                            <th>Rent price/day</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for book in books %}
+                            <tr>
+                                <td>{{ book.id }}</td>
+                                <td>{{ book.title }}</td>
+                                <td>
+                                    <a href="{{ url('app_book_list_by_category', { id: book.category.id }) }}">
+                                        {{ book.category.name }}
+                                    </a>
+                                </td>
+                                <td>{{ book.author.name }}</td>
+                                <td>{{ book.pages }} pages</td>
+                                <td>{{ book.ean }}</td>
+                                <td>${{ book.price|number_format(2, '.', ',') }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.card-body -->
+            </div>
+        </div>
+    </div>
 {% endblock %}
