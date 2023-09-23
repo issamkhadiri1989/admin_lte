@@ -25,6 +25,7 @@
                             <th>Pages</th>
                             <th>EAN13</th>
                             <th>Rent price/day</th>
+                            <th>Actions</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -41,6 +42,13 @@
                                 <td>{{ book.pages }} pages</td>
                                 <td>{{ book.ean }}</td>
                                 <td>${{ book.price|number_format(2, '.', ',') }}</td>
+                                <td>
+                                    <div class="btn-group">
+                                        <a href="{{ url('app_book_edit', {id: book.id}) }}" class="btn btn-success btn-flat" title="View book">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
+                                    </div>
+                                </td>
                             </tr>
                         {% endfor %}
                         </tbody>
