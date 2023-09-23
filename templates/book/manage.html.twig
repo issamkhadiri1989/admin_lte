@@ -1,14 +1,15 @@
 {% extends 'base.html.twig' %}
 {% form_theme form 'form/book.fields.html.twig' %}
 {% import 'macros/header.html.twig' as header %}
+{% set title = is_editing is same as(true) ? 'Edit book' : 'Add book' %}
 {% block body %}
-    {{ header.render_header('Manage e-catalog') }}
+    {{ header.render_header('Manage e-catalog', [{text: 'View library', target: url('app_book_list') }, {text:  title}]) }}
     <div class="row">
         <div class="col-md-12">
             {{ form_start(form) }}
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">{{ is_editing is same as(true) ? 'Edit book' : 'Add book'}}</h3>
+                    <h3 class="card-title">{{ title }}</h3>
                     <div class="card-tools">
                         <button class="btn btn-primary">
                             <i class="fas fa-save"></i> Save

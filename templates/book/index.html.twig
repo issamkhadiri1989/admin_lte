@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 {% import 'macros/header.html.twig' as header %}
 {% block body %}
-    {{ header.render_header('Library') }}
+    {{ header.render_header('Library', [{text: 'Add new book', target: url('app_book_new') }, {text: 'Library'}]) }}
     <div class="row">
         <div class="col-md-12">
             <div class="card">
