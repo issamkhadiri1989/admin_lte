@@ -1,0 +1,8 @@
+{% block _book_price_widget %}
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text">$</span>
+        </div>
+        <input type="text" {{ block('widget_attributes') }} value="{{ value }}" name="{{ full_name}}" id="{{ id }}"/>
+    </div>
+{% endblock %}

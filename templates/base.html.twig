@@ -225,6 +225,15 @@
     </aside>
     <div class="content-wrapper">
         <div class="container-fluid">
+            {% for label,messages in app.flashes %}
+                {% if messages|length > 0 %}
+                    <div class="alert alert-{{ label }}">
+                        {% for message in messages %}
+                            <p>{{ message }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif%}
+            {% endfor%}
             {% block body %}{% endblock body %}
         </div>
     </div>
