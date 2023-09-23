@@ -1,0 +1,11 @@
+{% form_theme my_form 'form/search.fields.html.twig' %}
+{{ form_start(my_form, {'attr': {'class': 'form-inline'}}) }}
+<div class="input-group">
+    {{ form_row(my_form.query) }}
+    <div class="input-group-append">
+        <button class="btn btn-sidebar">
+            <i class="fas fa-search fa-fw"></i>
+        </button>
+    </div>
+</div>
+{{ form_end(my_form) }}

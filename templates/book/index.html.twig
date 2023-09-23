@@ -8,7 +8,7 @@
                 <div class="card-header">
                     <h3 class="card-title">Books catalog</h3>
                     <div class="card-tools">
-                        {% if category is not null %}
+                        {% if category is defined and category is not null %}
                             Category : {{ category.name }} <a href="{{ url('app_book_list') }}">Remote filter</a>
                         {% endif %}
                     </div>
