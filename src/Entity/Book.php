@@ -5,8 +5,11 @@ namespace App\Entity;
 use App\Repository\BookRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: BookRepository::class)]
+#[UniqueEntity(fields: ['ean'])]
 class Book
 {
     #[ORM\Id]
@@ -15,24 +18,31 @@ class Book
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank, Assert\NotNull]
     private ?string $title = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Assert\NotBlank, Assert\NotNull]
     private ?string $synopsis = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank, Assert\NotNull]
     private ?float $price = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank, Assert\NotNull]
     private ?int $pages = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotNull, Assert\Length(exactly: 13), Assert\NotBlank]
     private ?string $ean = null;
 
     #[ORM\ManyToOne(inversedBy: 'books')]
+    #[Assert\NotBlank, Assert\NotNull]
     private ?Author $author = null;
 
     #[ORM\ManyToOne(inversedBy: 'books')]
+    #[Assert\NotBlank, Assert\NotNull]
     private ?Category $category = null;
 
     public function getId(): ?int
