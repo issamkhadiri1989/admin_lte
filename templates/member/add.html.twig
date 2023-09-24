@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+{% import 'macros/header.html.twig' as header %}
+{% block body %}
+    {{ header.render_header('New member', []) }}
+    <div class="row">
+        <div class="col-md-12">
+            {{ form_start(register) }}
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Register new member</h3>
+                    <div class="card-tools">
+                        <button class="btn btn-primary">
+                            Save
+                        </button>
+                    </div>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body p-4">
+                    <div class="row">
+                        <div class="col-6">
+                            {{ form_row(register.fullName) }}
+                        </div>
+                        <div class="col-6">
+                            {{ form_row(register.phoneNumber) }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            {{ form_row(register.identity) }}
+                        </div>
+                        <div class="col-6">
+                            {{ form_row(register.email) }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            {{ form_row(register.subscription) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{ form_end(register) }}
+        </div>
+    </div>
+{% endblock %}

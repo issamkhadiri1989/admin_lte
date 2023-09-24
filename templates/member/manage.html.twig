@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Subscriptions</h3>
+                    <div class="card-tools">
+
+                    </div>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body p-0">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th style="width: 10px">#</th>
+                            <th>Username</th>
+                            <th>Full name</th>
+                            <th>Subscription</th>
+                            <th>Confirmed</th>
+                            <th>Enabled</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for user in subscriptions %}
+                            <tr>
+                                <td>{{ user.id }}</td>
+                                <td>{{ user.getUserIdentifier() }}</td>
+                                <td>{{ user.fullName }}</td>
+                                <td>{{ user.subscription.label }}</td>
+                                <td>
+                                    {% if user.confirmed is same as(true) %}
+                                        <label class="badge badge-success">
+                                            Confirmed
+                                        </label>
+                                    {% else %}
+                                        <label class="badge badge-danger">
+                                            Not confirmed
+                                        </label>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if user.enabled is same as(true) %}
+                                        <label class="badge badge-success">
+                                            Enabled
+                                        </label>
+                                    {% else %}
+                                        <label class="badge badge-danger">
+                                           Disabled / Expired
+                                        </label>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if user is same as(app.user) %}
+                                        You
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

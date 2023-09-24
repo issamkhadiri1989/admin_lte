@@ -162,7 +162,9 @@
                          alt="User Image">
                 </div>
                 <div class="info">
-                    <a href="#" class="d-block">Alexander Pierce</a>
+                    <a href="{{ url('app_member_profile') }}" class="d-block">
+                        {{ app.user.fullName | upper }}
+                    </a>
                 </div>
             </div>
             <div class="form-inline">
@@ -204,12 +206,24 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="{{ path('app_book_list') }}" class="nav-link ">
+                                <a href="{{ path('app_member_add') }}" class="nav-link ">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>View library</p>
+                                    <p>Add new member</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ path('app_member_list') }}" class="nav-link ">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>View all subscriptions</p>
                                 </a>
                             </li>
                         </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url('app_logout') }}" class="nav-link">
+                            <i class="nav-icon fa fa-user-lock text-danger"></i>
+                            <p class="text">Logout</p>
+                        </a>
                     </li>
                 </ul>
             </nav>

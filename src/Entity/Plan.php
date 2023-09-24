@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\PlanRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: PlanRepository::class)]
@@ -18,6 +20,14 @@ class Plan
 
     #[ORM\Column]
     private ?float $price = null;
+
+    #[ORM\OneToMany(mappedBy: 'subscription', targetEntity: User::class)]
+    private Collection $users;
+
+    public function __construct()
+    {
+        $this->users = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -44,6 +54,36 @@ class Plan
     public function setPrice(float $price): static
     {
         $this->price = $price;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): static
+    {
+        if (!$this->users->contains($user)) {
+            $this->users->add($user);
+            $user->setSubscription($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): static
+    {
+        if ($this->users->removeElement($user)) {
+            // set the owning side to null (unless already changed)
+            if ($user->getSubscription() === $this) {
+                $user->setSubscription(null);
+            }
+        }
 
         return $this;
     }

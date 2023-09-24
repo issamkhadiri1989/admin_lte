@@ -1,0 +1,14 @@
+<p>Welcome {{ email.toName }}</p>
+<p>Your subscription to e-Library is successfully saved. You are subscribed to {{ member.subscription.label }}</p>
+<p>Please click on the link below to confirm your subscription</p>
+<dl>
+    <dt>Username / email :</dt>
+    <dd>
+        <strong>{{ member.getUserIdentifier() }}</strong>
+    </dd>
+    <dt>Your Password :</dt>
+    <dd>
+        <strong>{{ password}}</strong>
+    </dd>
+</dl>
+<p><a href="">Link</a></p>
