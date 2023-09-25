@@ -29,16 +29,24 @@ security:
             # https://symfony.com/doc/current/security/impersonating_user.html
             # switch_user: true
 
+    # define some hierarchy
+    role_hierarchy:
+        ROLE_MANAGER: ROLE_USER
+        ROLE_FREE_ACCESS: ROLE_USER
+        ROLE_PREMIUM: ROLE_FREE_ACCESS
+        ROLE_ADMIN: [ ROLE_MANAGER, ROLE_USER ]
+
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-         - { path: ^/default, roles: IS_AUTHENTICATED_FULLY }
-         - { path: ^/books, roles: IS_AUTHENTICATED_FULLY }
-         - { path: ^/member, roles: IS_AUTHENTICATED_FULLY }
-         - { path: ^/search, roles: IS_AUTHENTICATED_FULLY }
-         - { path: ^/result, roles: IS_AUTHENTICATED_FULLY }
-         - { path: ^/, roles: PUBLIC_ACCESS }
-         - { path: ^/logout, roles: PUBLIC_ACCESS }
+        - { path: ^/default, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/admin, roles: [ ROLE_ADMIN ] }
+        - { path: ^/books, roles: [ ROLE_MANAGER, ROLE_FREE_ACCESS, ROLE_PREMIUM ] }
+        - { path: ^/member/profile, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/search, roles: [ ROLE_MANAGER, ROLE_PREMIUM ] } # search is only available for premium
+        - { path: ^/result, roles: [ ROLE_MANAGER, ROLE_PREMIUM ] } # result is only available for premium
+        - { path: ^/, roles: PUBLIC_ACCESS }
+        - { path: ^/logout, roles: IS_AUTHENTICATED_FULLY }
 
 when@test:
     security:

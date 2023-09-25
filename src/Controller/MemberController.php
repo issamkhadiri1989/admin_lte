@@ -14,11 +14,13 @@ use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Address;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/member', name: "app_member_")]
 class MemberController extends AbstractController
 {
     #[Route('/add', name: 'add')]
+    #[IsGranted("ROLE_MANAGER")]
     public function add(
         Request $request,
         UserPasswordHasherInterface $passwordHasher,
@@ -27,7 +29,7 @@ class MemberController extends AbstractController
         Security $security
     ): Response {
         $member = new User();
-        $member->setRoles(['ROLE_MEMBER'])
+        $member->setRoles(['ROLE_FREE_ACCESS'])
             ->setConfirmed(false)
             ->setEnabled(false);
 
@@ -69,11 +71,22 @@ class MemberController extends AbstractController
     }
 
     #[Route('/list', name: 'list')]
+    #[IsGranted("ROLE_MANAGER")]
     public function manageSubscriptions(EntityManagerInterface $manager,): Response
     {
         /** @var User[] $repository */
         $users = $manager->getRepository(User::class)->findAll();
 
         return $this->render('member/manage.html.twig', ['subscriptions' => $users]);
+    }
+
+    #[Route("/authorize/{id}", name: "confirm")]
+    #[IsGranted("ROLE_MANAGER", exceptionCode: 403)]
+    public function confirmSubscription(User $member, EntityManagerInterface $manager): Response
+    {
+        $member->setConfirmed(true);
+        $manager->flush();
+
+        return $this->redirectToRoute('app_member_list');
     }
 }
