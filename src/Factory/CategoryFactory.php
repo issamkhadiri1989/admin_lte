@@ -37,6 +37,11 @@ final class CategoryFactory extends ModelFactory
         parent::__construct();
     }
 
+    protected static function getClass(): string
+    {
+        return Category::class;
+    }
+
     /**
      * @see https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#model-factories
      */
@@ -52,13 +57,7 @@ final class CategoryFactory extends ModelFactory
      */
     protected function initialize(): self
     {
-        return $this
-            // ->afterInstantiate(function(Category $category): void {})
-        ;
-    }
-
-    protected static function getClass(): string
-    {
-        return Category::class;
+        return $this// ->afterInstantiate(function(Category $category): void {})
+            ;
     }
 }

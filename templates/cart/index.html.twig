@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+{% import 'macros/header.html.twig' as header %}
+{% form_theme form 'form/cart_line.html.twig' %}
+{% block body %}
+    {{ header.render_header('My cart', []) }}
+    <div class="row">
+        <div class="col-md-12">
+            {% if cart.items | length > 0 %}
+                {{ form_start(form) }}
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            My order
+                        </h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body p-4">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Book</th>
+                                <th>Quantity</th>
+                                <th style="width: 40px">Action</th>
+                            </tr>
+                            </thead>
+                            <tbody class="book-lines-container">
+                            {% for child in form.items %}
+                                {{ form_row(child) }}
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="card-footer">
+                        {{ form_widget(form.update_cart) }}
+                        {{ form_widget(form.place_order) }}
+                    </div>
+                </div>
+                {{ form_end(form) }}
+            {% else %}
+                <div class="alert alert-warning">
+                    The cart is empty
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script>
+        $(document).ready(function () {
+            $('.book-lines-container').on('click', '.delete-row', function () {
+                $(this).parent().parent().remove();
+            });
+        });
+    </script>
+{% endblock %}

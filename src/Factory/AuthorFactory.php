@@ -37,6 +37,11 @@ final class AuthorFactory extends ModelFactory
         parent::__construct();
     }
 
+    protected static function getClass(): string
+    {
+        return Author::class;
+    }
+
     /**
      * @see https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#model-factories
      */
@@ -54,10 +59,5 @@ final class AuthorFactory extends ModelFactory
     {
         return $this// ->afterInstantiate(function(Author $author): void {})
             ;
-    }
-
-    protected static function getClass(): string
-    {
-        return Author::class;
     }
 }

@@ -41,7 +41,7 @@ security:
     access_control:
         - { path: ^/default, roles: IS_AUTHENTICATED_FULLY }
         - { path: ^/admin, roles: [ ROLE_ADMIN ] }
-        - { path: ^/books, roles: [ ROLE_MANAGER, ROLE_FREE_ACCESS, ROLE_PREMIUM ] }
+        - { path: ^/books, roles: IS_AUTHENTICATED_FULLY }
         - { path: ^/member/profile, roles: IS_AUTHENTICATED_FULLY }
         - { path: ^/search, roles: [ ROLE_MANAGER, ROLE_PREMIUM ] } # search is only available for premium
         - { path: ^/result, roles: [ ROLE_MANAGER, ROLE_PREMIUM ] } # result is only available for premium

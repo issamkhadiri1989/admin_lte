@@ -5,7 +5,6 @@ namespace App\DataFixtures;
 use App\Factory\AuthorFactory;
 use App\Factory\BookFactory;
 use App\Factory\CategoryFactory;
-use App\Factory\PlanFactory;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 

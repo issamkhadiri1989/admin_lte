@@ -172,12 +172,12 @@
             <nav class="mt-2">
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                     data-accordion="false">
-                    {% if is_granted('ROLE_MANAGER') %}
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                     <li class="nav-item">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
-                                Manage Library
+                                Library
                                 <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
@@ -188,12 +188,14 @@
                                     <p>View library</p>
                                 </a>
                             </li>
+                            {% if is_granted('ROLE_MANAGER') %}
                             <li class="nav-item">
                                 <a href="{{ path('app_book_new') }}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Add new book</p>
                                 </a>
                             </li>
+                            {% endif %}
                         </ul>
                     </li>
                     {% endif %}
@@ -258,5 +260,6 @@
 <script src="{{ asset('build/plugins/jquery/jquery.min.js') }}"></script>
 <script src="{{ asset('build/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ asset('build/dist/js/adminlte.min.js') }}"></script>
+{% block javascripts %}{% endblock javascripts %}
 </body>
 </html>

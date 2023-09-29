@@ -1,0 +1,17 @@
+{% block child_control %}
+<div class="input-group">
+    <span class="input-group-btn">
+        <button type="button" class="quantity-left-minus btn btn-danger btn-number btn-flat"
+                data-type="minus" data-field="">
+          <span class="fa fa-minus"></span>
+        </button>
+    </span>
+    {{ form_widget(form, {attr: {min: "1", max: "100"}}) }}
+    <span class="input-group-btn">
+        <button type="button" class="quantity-right-plus btn btn-success btn-number btn-flat"
+                data-type="plus" data-field="">
+            <span class="fa fa-plus"></span>
+        </button>
+    </span>
+</div>
+{% endblock %}

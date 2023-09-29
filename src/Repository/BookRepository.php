@@ -39,4 +39,22 @@ class BookRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    /**
+     * @param int[] $bookIds
+     *
+     * @return Book[]
+     */
+    public function reloadCartItems(array $bookIds): array
+    {
+        $queryBuilder = $this->createQueryBuilder('book');
+
+        $expr = $queryBuilder->expr();
+
+        return $queryBuilder->select()
+            ->where($expr->in('book.id', ':books'))
+            ->setParameter('books', $bookIds)
+            ->getQuery()
+            ->getResult();
+    }
 }

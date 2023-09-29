@@ -39,6 +39,11 @@ final class PlanFactory extends ModelFactory
         parent::__construct();
     }
 
+    protected static function getClass(): string
+    {
+        return Plan::class;
+    }
+
     /**
      * @see https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#model-factories
      *
@@ -57,13 +62,7 @@ final class PlanFactory extends ModelFactory
      */
     protected function initialize(): self
     {
-        return $this
-            // ->afterInstantiate(function(Plan $plan): void {})
-        ;
-    }
-
-    protected static function getClass(): string
-    {
-        return Plan::class;
+        return $this// ->afterInstantiate(function(Plan $plan): void {})
+            ;
     }
 }

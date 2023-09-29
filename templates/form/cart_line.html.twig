@@ -1,0 +1,21 @@
+{% use 'form/fields.book.html.twig' %}
+{% block _cart_item_quantity_row %}
+    <div class="row">
+        <div class="col-12">
+            {{ block('child_control') }}
+            {{ form_errors(form) }}
+        </div>
+    </div>
+{% endblock %}
+{% block _cart_items_entry_row %}
+    {% set line = form.vars.value %}
+    <tr>
+        <td>{{ line.book.title | upper}}</td>
+        <td>{{ block('child_control') }}</td>
+        <td>
+            <button type="button" class="btn btn-flat btn-danger delete-row">
+                <i class="fa fa-trash-alt"></i>
+            </button>
+        </td>
+    </tr>
+{% endblock %}

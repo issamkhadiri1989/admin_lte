@@ -39,6 +39,11 @@ final class BookFactory extends ModelFactory
         parent::__construct();
     }
 
+    protected static function getClass(): string
+    {
+        return Book::class;
+    }
+
     /**
      * @see https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#model-factories
      *
@@ -62,13 +67,7 @@ final class BookFactory extends ModelFactory
      */
     protected function initialize(): self
     {
-        return $this
-            // ->afterInstantiate(function(Book $book): void {})
-        ;
-    }
-
-    protected static function getClass(): string
-    {
-        return Book::class;
+        return $this// ->afterInstantiate(function(Book $book): void {})
+            ;
     }
 }
