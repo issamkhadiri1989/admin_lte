@@ -1,4 +1,26 @@
 {% extends 'base.html.twig'%}
 {% block body %}
+    <table border="2">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>ISBN</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Price</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for book in booksList %}
+            <tr>
+                <td>{{ book.id }}</td>
+                <td>{{ book.isbn }}</td>
+                <td>{{ book.title|upper }}</td>
+                <td>{{ book.author.name }}</td>
+                <td>{{ book.price|number_format(2, ',', ' ') }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 
 {% endblock body %}
