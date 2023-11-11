@@ -4,6 +4,7 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
+    app.notifier.sender: '%env(APP_MAIL_ADMIN)%'
 
 services:
     # default configuration for services in *this* file
@@ -24,4 +25,8 @@ services:
     # please note that last definitions always *replace* previous ones
     App\Order\OrderCheckout:
         arguments:
-            $purchaser: '@App\Order\Purchase\Purchaser\ExcelOrderPurchaser'
+            $persister: '@App\Order\Purchase\Purchaser\DatabaseOrderPuchaser'
+
+    App\Service\Notify\MailNotifier:
+        arguments:
+            $from: '%app.notifier.sender%'

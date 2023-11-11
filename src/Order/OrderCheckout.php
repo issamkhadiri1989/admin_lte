@@ -4,23 +4,27 @@ declare(strict_types=1);
 
 namespace App\Order;
 
-use App\Order\Purchase\OrderPurchaserInterface;
+use App\Entity\Order;
+use App\Order\Purchase\Purchaser\OrderPurchaserInterface;
+use App\Service\Notify\MailNotifier;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Address;
 
 class OrderCheckout
 {
-    private OrderPurchaserInterface $purchaser;
-    private MailerInterface $mailer;
-
-    public function __construct(OrderPurchaserInterface $purchaser, MailerInterface $mailer)
+    public function __construct(private OrderPurchaserInterface $persister, private MailNotifier $notifier)
     {
-        $this->purchaser = $purchaser;
-        $this->mailer = $mailer;
     }
 
-    public function checkout(): void
+    public function checkout(Order $order): void
     {
-        $this->purchaser->purchase();
-//        $this->mailer->send();
+        $this->persister->persist();
+
+        $this->notifier->notify(
+            new Address('khadiri.issam@gmail.com'),
+            new Address($order->getCustomer()->getEmail())
+        );
     }
 }
