@@ -4,7 +4,7 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
-
+    app.mail.sender: '%env(APP_SYS_ADMIN)%'
 services:
     # default configuration for services in *this* file
     _defaults:
@@ -29,3 +29,13 @@ services:
 
     App\Order\Persister\PersisterInterface: '@App\Order\Persister\DatabaseOrderPersister'
     App\Order\Persister\PersisterInterface $excelPersister: '@App\Order\Persister\ExcelOrderPersister'
+
+    app_notifier:
+        namespace: App\Notifier\
+        resource: '../src/Notifier'
+        bind:
+            $sender: '%app.mail.sender%'
+
+#    App\Notifier\MailNotifier:
+#        arguments:
+#            $sender: '%app.mail.sender%'
