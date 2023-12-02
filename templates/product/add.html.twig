@@ -1,0 +1,15 @@
+{% extends 'base.html.twig'%}
+{% block body %}
+    {{ form_start(addProductForm) }}
+    <div class="row">
+        <div class="col-6">
+            {{ form_row(addProductForm.label) }}
+            {{ form_row(addProductForm.price) }}
+        </div>
+        <div class="col-6">
+            {{ form_row(addProductForm.description) }}
+        </div>
+    </div>
+    <button type="submit" class="btn btn-success">Add new Product</button>
+    {{ form_end(addProductForm) }}
+{% endblock %}
