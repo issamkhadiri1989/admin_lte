@@ -3,10 +3,15 @@
 namespace App\Entity;
 
 use App\Repository\BookRepository;
+use App\Validator\Constraints\PhoneConstraint;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\NotEqualTo;
+use Symfony\Component\Validator\Constraints\NotNull;
 
 #[ORM\Entity(repositoryClass: BookRepository::class)]
 class Book
@@ -17,13 +22,15 @@ class Book
     private ?int $id = null;
 
     #[ORM\Column(length: 100)]
+    #[NotNull, PhoneConstraint]
     private ?string $title = null;
 
     #[ORM\Column(length: 13, unique: true)]
+    #[Length(exactly: 13, exactMessage: 'This field show have 13 chars'), NotNull, NotBlank]
     private ?string $ean13 = null;
 
-    #[ORM\Column(type: Types::DATE_IMMUTABLE)]
-    private ?\DateTimeImmutable $publishDate = null;
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    private ?\DateTime $publishDate = null;
 
     #[ORM\Column(length: 255)]
     private ?string $edition = null;
@@ -72,12 +79,12 @@ class Book
         return $this;
     }
 
-    public function getPublishDate(): ?\DateTimeImmutable
+    public function getPublishDate(): ?\DateTime
     {
         return $this->publishDate;
     }
 
-    public function setPublishDate(\DateTimeImmutable $publishDate): static
+    public function setPublishDate(\DateTime $publishDate): static
     {
         $this->publishDate = $publishDate;
 

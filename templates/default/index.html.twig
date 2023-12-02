@@ -17,4 +17,10 @@
         <li>Your template at <code><a href="{{ '/var/www/html/templates/default/index.html.twig'|file_link(0) }}">templates/default/index.html.twig</a></code></li>
     </ul>
 </div>
+{#{{ form(myForm) }}#}
+    {{ form_start(myForm) }}
+        {{ form_row(myForm.email) }}
+        {{ form_row(myForm.fullName) }}
+    <button type="submit">Send</button>
+    {{ form_end(myForm) }}
 {% endblock %}

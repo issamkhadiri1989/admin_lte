@@ -13,8 +13,11 @@ use Symfony\Component\Mailer\MailerInterface;
 
 class OrderCheckout
 {
-    public function __construct(private MailerInterface $mailer, private AbstractOrderPersister $persister)
-    {
+    public function __construct(
+		private MailerInterface $mailer, 
+		private AbstractOrderPersister $persister, 
+		private float $tax
+	) {
     }
 
     public function checkout(): void
