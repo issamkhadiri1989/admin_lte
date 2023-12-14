@@ -21,7 +21,9 @@ class StudentType extends AbstractType
             ],
             'label' => 'Nom complet'
         ])
-            ->add('email', Type\EmailType::class);
+            ->add('email', Type\EmailType::class, [
+                'label' => 'Email'
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

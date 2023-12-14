@@ -1,0 +1,23 @@
+{% block _student_email_row %}
+    {{ form_label(form) }}
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">@</span>
+        </div>
+        {{ form_widget(form, {
+            'attr': {
+                'class': 'form-control',
+                'placeholder': 'Email'
+            }
+        }) }}
+        {{ form_errors(form) }}
+        {{ form_help(form) }}
+    </div>
+{% endblock %}
+{% block _student_email_label %}
+    <p>{{ label }}</p>
+{% endblock %}
+
+{% block tel_row %}
+...
+{% endblock %}
