@@ -16,10 +16,10 @@ class AppFixtures extends Fixture
 
         $authors = AuthorFactory::createMany(5);
 
-        $books = BookFactory::createMany(500, [
+       /* $books = BookFactory::createMany(500, [
             'author' => AuthorFactory::random(),
             'categories' => CategoryFactory::randomRange(1, 4),
-        ]);
+        ]);*/
 
         $manager->flush();
     }

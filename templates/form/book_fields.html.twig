@@ -1,0 +1,196 @@
+{% block book_row %}
+<div class="row">
+    <div class="col-6">
+       <div class="row">
+           <div class="col-6">
+               {{ form_row(form.title) }}
+               {{ form_row(form.publishDate) }}
+           </div>
+           <div class="col-6">
+               {{ form_row(form.pages) }}
+               {{ form_row(form.isbn) }}
+               {{ form_row(form.price) }}
+
+           </div>
+       </div>
+        <div class="row">
+            <div class="col-6">
+                {{ form_row(form.author) }}
+            </div>
+        </div>
+    </div>
+    <div class="col-6">
+        {{ form_row(form.synopsis) }}
+        {{ form_row(form.categories) }}
+    </div>
+</div>
+
+{% endblock %}
+
+
+
+{% block _book_title_row %}
+    <div class="form-group">
+        {{ form_label(form) }}
+        {{ form_widget(form, {
+            'attr': {
+                'class': "form-control"
+            }
+        }) }}
+        {{ form_help(form, {
+            'attr': {
+                'class': 'form-text text-muted'
+            }
+        }) }}
+        <div class="form-error">
+            {{ form_errors(form) }}
+        </div>
+    </div>
+{% endblock %}
+
+{% block _book_synopsis_row %}
+    <div class="form-group">
+        {{ form_label(form) }}
+        {{ form_widget(form, {
+            'attr': {
+                'class': "form-control"
+            }
+        }) }}
+        {{ form_help(form, {
+            'attr': {
+                'class': 'form-text text-muted'
+            }
+        }) }}
+        <div class="form-error">
+            {{ form_errors(form) }}
+        </div>
+    </div>
+{% endblock %}
+
+{% block _book_pages_row %}
+    <div class="form-group">
+        {{ form_label(form) }}
+        {{ form_widget(form, {
+            'attr': {
+                'class': "form-control"
+            }
+        }) }}
+        {{ form_help(form, {
+            'attr': {
+                'class': 'form-text text-muted'
+            }
+        }) }}
+        <div class="form-error">
+            {{ form_errors(form) }}
+        </div>
+    </div>
+{% endblock %}
+
+{% block _book_publishDate_row %}
+    <div class="form-group">
+        {{ form_label(form) }}
+        {{ form_widget(form, {
+            'attr': {
+                'class': "form-control"
+            }
+        }) }}
+        {{ form_help(form, {
+            'attr': {
+                'class': 'form-text text-muted'
+            }
+        }) }}
+        <div class="form-error">
+            {{ form_errors(form) }}
+        </div>
+    </div>
+{% endblock %}
+
+{% block _book_price_row %}
+<div class="form-group">
+    {{ form_label(form, '', {'label_attr': {'class': 'sr-only'}}) }}
+    <div class="input-group mb-3">
+
+        {{ form_widget(form, {
+            'attr': {
+                'class': "form-control",
+                'aria-label': "Amount (to the nearest dollar)"
+            }
+        }) }}
+        <div class="input-group-append">
+            <span class="input-group-text">Dhs</span>
+        </div>
+        {{ form_help(form, {
+            'attr': {
+                'class': 'form-text text-muted'
+            }
+        }) }}
+    </div>
+    <div class="form-error">
+        {{ form_errors(form) }}
+    </div>
+</div>
+{% endblock %}
+
+{% block _book_isbn_row %}
+    <div class="form-group">
+        {{ form_label(form) }}
+        {{ form_widget(form, {
+            'attr': {
+                'class': "form-control"
+            }
+        }) }}
+        {{ form_help(form, {
+            'attr': {
+                'class': 'form-text text-muted'
+            }
+        }) }}
+        <div class="form-error">
+            {{ form_errors(form) }}
+        </div>
+    </div>
+{% endblock %}
+
+{% block _book_author_row %}
+    <div class="form-group">
+        {{ form_label(form) }}
+        {{ form_widget(form, {
+            'attr': {
+                'class': "form-control"
+            }
+        }) }}
+        {{ form_help(form, {
+            'attr': {
+                'class': 'form-text text-muted'
+            }
+        }) }}
+        <div class="form-error">
+            {{ form_errors(form) }}
+        </div>
+    </div>
+{% endblock %}
+
+{% block _book_categories_row %}
+    <div class="form-group">
+        {{ form_label(form) }}
+        {{ form_widget(form, {
+            'attr': {
+                'class': "form-control"
+            }
+        }) }}
+        {{ form_help(form, {
+            'attr': {
+                'class': 'form-text text-muted'
+            }
+        }) }}
+        <div class="form-error">
+            {{ form_errors(form) }}
+        </div>
+    </div>
+{% endblock %}
+
+{% block _book_title_help %}
+<small {{ block('attributes') }}>
+    {{ help }}
+</small>
+{% endblock %}
+

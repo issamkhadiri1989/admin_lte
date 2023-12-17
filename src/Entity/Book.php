@@ -19,8 +19,8 @@ class Book
     #[ORM\Column(length: 30)]
     private ?string $title = null;
 
-    #[ORM\Column(type: Types::DATE_IMMUTABLE)]
-    private ?\DateTimeImmutable $publishDate = null;
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    private ?\DateTimeInterface $publishDate = null;
 
     #[ORM\Column]
     private ?int $pages = null;
@@ -37,6 +37,9 @@ class Book
 
     #[ORM\Column(length: 25, unique: true)]
     private ?string $isbn = null;
+
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $synopsis = null;
 
     public function __construct()
     {
@@ -60,12 +63,12 @@ class Book
         return $this;
     }
 
-    public function getPublishDate(): ?\DateTimeImmutable
+    public function getPublishDate(): ?\DateTimeInterface
     {
         return $this->publishDate;
     }
 
-    public function setPublishDate(\DateTimeImmutable $publishDate): static
+    public function setPublishDate(\DateTimeInterface $publishDate): static
     {
         $this->publishDate = $publishDate;
 
@@ -140,6 +143,18 @@ class Book
     public function setIsbn(string $isbn): static
     {
         $this->isbn = $isbn;
+
+        return $this;
+    }
+
+    public function getSynopsis(): ?string
+    {
+        return $this->synopsis;
+    }
+
+    public function setSynopsis(string $synopsis): static
+    {
+        $this->synopsis = $synopsis;
 
         return $this;
     }

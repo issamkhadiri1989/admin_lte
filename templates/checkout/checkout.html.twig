@@ -1,4 +1,12 @@
+{% form_theme checkoutForm 'form/book_fields.html.twig' %}
 {% extends 'base.html.twig' %}
 {% block body %}
- {{ form(checkoutForm) }}
+    {{ form_start(checkoutForm) }}
+    {{ form_row(checkoutForm) }}
+   <button type="submit" class="btn btn-success">Add Book</button>
+    {{ form_end(checkoutForm) }}
+{% endblock %}
+
+{% block stylesheets %}
+    <link href="{{ asset('css/my_style.css') }}" rel="stylesheet">
 {% endblock %}
