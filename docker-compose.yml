@@ -20,8 +20,8 @@ services:
             - database
         networks:
             - inner_net
-        environment:
-            APP_ENV: prod
+#        environment:
+#            APP_ENV: prod
     mailcatcher:
         networks:
             - inner_net

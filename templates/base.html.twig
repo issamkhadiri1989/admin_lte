@@ -12,6 +12,12 @@
         {% endblock %}
     </head>
     <body>
+    {% if app.user %}
+        <p>Logged as: {{ app.user.fullName }}</p>
+        <a href="{{ path('app_logout') }}">Sign out</a>
+    {% else %}
+        <a href="{{ path('app_login') }}">Sign in</a>
+    {% endif %}
         <div class="container">
             {% block body %}{% endblock %}
         </div>
