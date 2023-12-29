@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class BookController extends AbstractController
 {
@@ -20,9 +21,13 @@ class BookController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/book/add', name: 'app_add_book')]
     public function add(Request $request, EntityManagerInterface $manager): Response
     {
+      //  $this->denyAccessUnlessGranted('ROLE_TEACHER');
+
+        
         $form = $this->createForm(BookType::class);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -53,7 +58,7 @@ class BookController extends AbstractController
         EntityManagerInterface $manager,
         Book $book
     ): Response {
-        $form = $this->createForm(BookType::class, $book);
+       $form = $this->createForm(BookType::class, $book);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $manager->flush();
