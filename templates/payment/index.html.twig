@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PaymentController!{% endblock %}
+
+{% block body %}
+    {{ form_start(form) }}
+    <div class="card">
+        <div class="card-header">
+            Credit Card Details
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-12">
+                    {{ form_row(form.cardNumber, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="col-6">
+                    {{ form_row(form.month, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="col-6">
+                    {{ form_row(form.year, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="col-6">
+                    {{ form_row(form.cvv, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="col-6">
+                    <img src="{{ asset('visa.png') }}" width="100px"/>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <button class="btn btn-success">
+                Proceed to payment
+            </button>
+        </div>
+    </div>
+
+
+
+    {{ form_end(form) }}
+{% endblock %}
