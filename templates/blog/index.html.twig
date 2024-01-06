@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello BlogController!{% endblock %}
+
+{% block body %}
+    <h1>Edition Page</h1>
+    <p>
+        {{ blog.title }}
+    </p>
+
+    <article>
+        {{ blog.content | raw }}
+    </article>
+{% endblock %}

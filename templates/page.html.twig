@@ -1,0 +1,98 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <!--------------------------------------
+    NAVBAR
+    --------------------------------------->
+    <nav class="topnav navbar navbar-expand-lg navbar-light bg-white fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="./index.html"><strong>Mundana</strong></a>
+            <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarColor02"
+                    aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse" id="navbarColor02" style="">
+                <ul class="navbar-nav mr-auto d-flex align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="">Intro <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="">Culture</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href=".">Tech</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="">Politics</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="">Health</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="">Collections</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="">Template <span class="badge badge-secondary">docs</span></a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ml-auto d-flex align-items-center">
+                    <li class="nav-item highlight">
+                        <a class="nav-link" href="{{ path('app_login') }}">
+                            Login
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- End Navbar -->
+
+    {% block jumbotron %}{% endblock %}
+
+    {% block content %}{% endblock %}
+
+    <!--------------------------------------
+    FOOTER
+    --------------------------------------->
+    <div class="container mt-5">
+        <footer class="bg-white border-top p-3 text-muted small">
+            <div class="row align-items-center justify-content-between">
+                <div>
+                    <span class="navbar-brand mr-2"><strong>Mundana</strong></span> Copyright &copy;
+                    <script>document.write(new Date().getFullYear())</script>
+                    . All rights reserved.
+                </div>
+                <div>
+                    Made with <a target="_blank" class="text-secondary font-weight-bold"
+                                 href="https://www.wowthemes.net/mundana-free-html-bootstrap-template/">Mundana
+                        Theme</a> by
+                    WowThemes.net.
+                </div>
+            </div>
+        </footer>
+    </div>
+    <!-- End Footer -->
+
+{% endblock %}
+{% block stylesheets %}
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700|Source+Sans+Pro:400,600,700"
+          rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+          integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <!-- Main CSS -->
+    <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet"/>
+{% endblock %}
+
+{% block javascripts %}
+    <!--------------------------------------
+    JAVASCRIPTS
+    --------------------------------------->
+    <script src="{{ asset('assets/js/vendor/jquery.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/js/vendor/popper.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/js/vendor/bootstrap.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/js/functions.js') }}" type="text/javascript"></script>
+{% endblock %}
