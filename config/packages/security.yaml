@@ -21,6 +21,7 @@ security:
             form_login:
                 login_path: app_login
                 check_path: app_login
+#                failure_handler: App\Security\Handler\LoginFailureHandler
             login_throttling:
                 max_attempts: 3
                 interval: '60 minutes'
