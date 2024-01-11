@@ -17,6 +17,8 @@ HEADER
                     <div class="d-flex align-items-center">
                         <small class="ml-2">{{ blog.author.username }} <span class="text-muted d-block">{{ blog.publishedAt | date('D, m Y') }}</span>
                         </small>
+
+                        <strong>{{ dump(blog.draft) }}</strong>
                     </div>
                 </div>
                 <div class="col-md-6 pr-0">

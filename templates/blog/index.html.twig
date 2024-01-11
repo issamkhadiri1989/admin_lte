@@ -3,12 +3,14 @@
 {% block title %}Hello BlogController!{% endblock %}
 
 {% block body %}
-    <h1>Edition Page</h1>
+    <h1>{{ title }}</h1>
     <p>
         {{ blog.title }}
     </p>
 
     <article>
+        <pre>
         {{ blog.content | raw }}
+            </pre>
     </article>
 {% endblock %}
