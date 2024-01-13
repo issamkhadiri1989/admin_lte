@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -31,6 +32,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\OneToMany(mappedBy: 'author', targetEntity: Blog::class)]
     private Collection $blogs;
+
+    #[ORM\Column(nullable: true)]
+    private ?bool $banned = null;
+
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $expirationDate = null;
 
     public function __construct()
     {
@@ -133,6 +140,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $blog->setAuthor(null);
             }
         }
+
+        return $this;
+    }
+
+    public function isBanned(): ?bool
+    {
+        return $this->banned;
+    }
+
+    public function setBanned(?bool $banned): static
+    {
+        $this->banned = $banned;
+
+        return $this;
+    }
+
+    public function getExpirationDate(): ?\DateTimeInterface
+    {
+        return $this->expirationDate;
+    }
+
+    public function setExpirationDate(?\DateTimeInterface $expirationDate): static
+    {
+        $this->expirationDate = $expirationDate;
 
         return $this;
     }
